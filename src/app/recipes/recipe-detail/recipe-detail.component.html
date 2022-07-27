@@ -1,1 +1,25 @@
-<p>recipe-detail works!</p>
+<div class="list-group-item clearfix" *ngIf="recipeDetails != undefined">
+    <span>
+        <img src="{{recipeDetails.image}}" alt="{{recipeDetails.title}}" class="img-responsive" style="max-height: 200px;">
+    </span>
+    <div>
+        <h4 class="list-group-item-heading">{{recipeDetails.title}}</h4>
+        <p class="list-group-item-text">Ready in {{recipeDetails.readyInMinutes}} minutes</p>
+        <p class="list-group-item-text">{{recipeDetails.dairyFree}}</p>
+        <p class="list-group-item-text">{{recipeDetails.instructions}}</p>
+        <ul class="list-group">
+            <li class="list-group-item"
+                *ngFor="let ingredient of recipeDetails.extendedIngredients">
+                {{ingredient.name}} - {{ingredient.amount}} - {{ingredient.unit}}
+            </li>
+        </ul>
+        <ul class="list-group">
+            <li class="list-group-item"
+                *ngFor="let instruction of recipeDetails.analyzedInstructions">
+                <p *ngFor="let step of instruction.steps">
+                    {{step.number}} : {{step.step}}
+                </p>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,21 +1,78 @@
 import {EventEmitter, Injectable} from "@angular/core";
 import {RecipeListItem} from "../models/recipe-list-item.model";
+import {HttpClient, HttpParams} from "@angular/common/http";
+import {catchError, map} from "rxjs/operators";
+import {RecipeDetails} from "../models/recipeDetails.model";
 
 @Injectable({providedIn: 'root'})
 export class RecipeService {
 
     onSelectedUrl = new EventEmitter<string>();
 
-    private recipeList: RecipeListItem[] = [
-        new RecipeListItem('Cabbage Salad with Peanuts', 'cabbage-salad-with-peanuts-723984.jpg',
-            'http://naturallyella.com/cabbage-salad-with-peanuts/',10),
-        new RecipeListItem('Stuffed Sweet Potato with Spinach, Hummus & Feta', 'Stuffed-Sweet-Potato-with-Spinach--Hummus---Feta-584549.jpg',
-            'http://www.cookincanuck.com/2013/09/stuffed-sweet-potato-recipe-with-spinach-hummus-feta/', 10),
-        new RecipeListItem('Cilantro Salsa', 'Cilantro-Salsa-667917.jpg',
-            'http://www.thegraciouspantry.com/clean-eating-cilantro-salsa/', 20),
-    ];
+    public recipeList: any;
+    baseUri: any;
 
-    getRecipes() {
-        return this.recipeList.slice();
+    // private recipeList: RecipeListItem[] = [
+    //     new RecipeListItem('Cabbage Salad with Peanuts', 'cabbage-salad-with-peanuts-723984.jpg',
+    //         'http://naturallyella.com/cabbage-salad-with-peanuts/',10),
+    //     new RecipeListItem('Stuffed Sweet Potato with Spinach, Hummus & Feta', 'Stuffed-Sweet-Potato-with-Spinach--Hummus---Feta-584549.jpg',
+    //         'http://www.cookincanuck.com/2013/09/stuffed-sweet-potato-recipe-with-spinach-hummus-feta/', 10),
+    //     new RecipeListItem('Cilantro Salsa', 'Cilantro-Salsa-667917.jpg',
+    //         'http://www.thegraciouspantry.com/clean-eating-cilantro-salsa/', 20),
+    // ];
+
+    constructor(private http: HttpClient) {
+    }
+
+    // getRecipes() {
+    //     return this.recipeList.slice();
+    // }
+
+    getBaseUri() {
+        return this.http
+            .get<any>('http://localhost:8085/all-recipes')
+            .pipe(
+                map(responseData => {
+                    return responseData.baseUri;
+                }));
+    }
+
+    getRecipeList() {
+        return this.http
+            .get<RecipeListItem[]>('http://localhost:8085/all-recipes')
+            .pipe(
+                map(responseData => {
+                    // console.log(responseData);
+                    const response: any[] = [];
+                    for (const key in responseData) {
+                        if (responseData.hasOwnProperty(key)) {
+                            response.push({...responseData[key]})
+                        }
+                    }
+                   return response;
+                })).pipe(map(resp => {
+                    const recipeList: RecipeListItem[] = [];
+                    for (const key in resp[1]) {
+                        if (resp[1].hasOwnProperty(key)) {
+                            recipeList.push({...resp[1][key]})
+                        }
+                    }
+                    // console.log(recipeList2, 'RESP');
+                    return recipeList;
+                }))
+    }
+
+    getRecipeDetails(url: string) {
+        return this.http
+            .get<RecipeDetails>('http://localhost:8085/recipe',
+                {
+                    params: new HttpParams().set('url', url)
+                }
+            )
+            .pipe(
+                map(responseData => {
+                    return responseData;
+
+                }))
     }
 }

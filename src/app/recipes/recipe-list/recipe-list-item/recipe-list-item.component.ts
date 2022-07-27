@@ -10,9 +10,15 @@ import {RecipeService} from "../../../services/recipe.service";
 export class RecipeListItemComponent implements OnInit {
 
   @Input() recipeListItem: RecipeListItem;
-  imageUri: string = 'https://spoonacular.com/recipeImages/';
+  // imageUri: string = 'https://spoonacular.com/recipeImages/cabbage-salad-with-peanuts-723984.jpg';
+  imageUri: string;
 
-  constructor(private recipeService: RecipeService) { }
+  constructor(private recipeService: RecipeService) {
+    this.recipeService.getBaseUri().subscribe( (resp) => {
+      this.imageUri = resp + this.recipeListItem.image;
+    });
+    this.recipeService.getBaseUri();
+  }
 
   ngOnInit(): void {
   }
