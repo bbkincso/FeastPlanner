@@ -12,21 +12,21 @@ export class RecipeService {
     public recipeList: any;
     baseUri: any;
 
-    // private recipeList: RecipeListItem[] = [
-    //     new RecipeListItem('Cabbage Salad with Peanuts', 'cabbage-salad-with-peanuts-723984.jpg',
-    //         'http://naturallyella.com/cabbage-salad-with-peanuts/',10),
-    //     new RecipeListItem('Stuffed Sweet Potato with Spinach, Hummus & Feta', 'Stuffed-Sweet-Potato-with-Spinach--Hummus---Feta-584549.jpg',
-    //         'http://www.cookincanuck.com/2013/09/stuffed-sweet-potato-recipe-with-spinach-hummus-feta/', 10),
-    //     new RecipeListItem('Cilantro Salsa', 'Cilantro-Salsa-667917.jpg',
-    //         'http://www.thegraciouspantry.com/clean-eating-cilantro-salsa/', 20),
-    // ];
+    private recipeList2: RecipeListItem[] = [
+        new RecipeListItem('Cabbage Salad with Peanuts', 'cabbage-salad-with-peanuts-723984.jpg',
+            'http://naturallyella.com/cabbage-salad-with-peanuts/',10),
+        new RecipeListItem('Stuffed Sweet Potato with Spinach, Hummus & Feta', 'Stuffed-Sweet-Potato-with-Spinach--Hummus---Feta-584549.jpg',
+            'http://www.cookincanuck.com/2013/09/stuffed-sweet-potato-recipe-with-spinach-hummus-feta/', 10),
+        new RecipeListItem('Cilantro Salsa', 'Cilantro-Salsa-667917.jpg',
+            'http://www.thegraciouspantry.com/clean-eating-cilantro-salsa/', 20),
+    ];
 
     constructor(private http: HttpClient) {
     }
 
-    // getRecipes() {
-    //     return this.recipeList.slice();
-    // }
+    getRecipes() {
+        return this.recipeList2.slice();
+    }
 
     getBaseUri() {
         return this.http
