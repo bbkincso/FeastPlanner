@@ -1,1 +1,12 @@
-<p>recipe-list-item works!</p>
+<a style="cursor: pointer;"
+   class="list-group-item clearfix"
+   (click)="selectRecipe(recipeListItem)">
+
+    <span class="pull-left">
+        <img [src]="imageUri" alt="{{recipeListItem.title}}" class="img-responsive" style="max-height: 50px;">
+    </span>
+    <div class="pull-right">
+        <h4 class="list-group-item-heading">{{recipeListItem.title}}</h4>
+        <p class="list-group-item-text">Ready in {{recipeListItem.readyInMinutes}} minutes</p>
+    </div>
+</a>
