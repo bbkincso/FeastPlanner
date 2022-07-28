@@ -8,6 +8,7 @@ import {RecipeDetails} from "../models/recipeDetails.model";
 export class RecipeService {
 
     onSelectedUrl = new EventEmitter<string>();
+    onAddedRecipe = new EventEmitter<RecipeDetails>();
 
     public recipeList: any;
     baseUri: any;

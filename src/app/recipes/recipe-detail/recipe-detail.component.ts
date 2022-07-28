@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {RecipeService} from "../../services/recipe.service";
 import {RecipeDetails} from "../../models/recipeDetails.model";
 import {ActivatedRoute, Params} from "@angular/router";
@@ -12,6 +12,7 @@ import {map} from "rxjs/operators";
 export class RecipeDetailComponent implements OnInit {
   sourceUrl: any;
   recipeDetails = new RecipeDetails({});
+  // @Input() recipe = new RecipeDetails({});
 
 
   constructor(private recipeService: RecipeService,
@@ -52,8 +53,10 @@ export class RecipeDetailComponent implements OnInit {
                 //this.image = recipeDetail.image;
             });
         })
-
-
-
   }
+
+    addToRecipe(recipe: RecipeDetails){
+        this.recipeService.onAddedRecipe.emit(recipe);
+        console.log('add to recipe clicked. recipe = ', recipe);
+    }
 }
