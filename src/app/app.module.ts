@@ -10,6 +10,9 @@ import { RecipesComponent } from './recipes/recipes.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {AppRoutingModule} from "./app-routing.module";
+import { MenuComponent } from './menu/menu.component';
+import { MenuListComponent } from './menu/menu-list/menu-list.component';
+import { NewMenuComponent } from './menu/new-menu/new-menu.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import {AppRoutingModule} from "./app-routing.module";
     RecipeListItemComponent,
     RecipeDetailComponent,
     HeaderComponent,
-    RecipesComponent
+    RecipesComponent,
+    MenuComponent,
+    MenuListComponent,
+    NewMenuComponent
   ],
   imports: [
     BrowserModule,
