@@ -13,9 +13,9 @@ const appRoutes: Routes = [
             { path: '', component:RecipeListComponent},
             { path: 'recipe', component:RecipeDetailComponent}
         ]},
-    { path: 'menu', component:MenuComponent, children: [
+    { path: 'menus', component:MenuComponent, children: [
             { path: '', component:MenuListComponent}
-            // { path: 'new', component:NewMenuComponent},
+            // { path: 'new', component:NewMenuComponent}
         ]}
 
 ];

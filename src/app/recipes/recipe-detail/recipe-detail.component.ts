@@ -11,7 +11,7 @@ import {map} from "rxjs/operators";
 })
 export class RecipeDetailComponent implements OnInit {
   sourceUrl: any;
-  recipeDetails = new RecipeDetails({});
+  recipeDetails = new RecipeDetails();
   // @Input() recipe = new RecipeDetails({});
 
 
@@ -49,7 +49,7 @@ export class RecipeDetailComponent implements OnInit {
             // console.log(this.sourceUrl);
         this.recipeService.getRecipeDetails(params['url'])
             .subscribe((recipeDetail) => {
-                this.recipeDetails = new RecipeDetails(recipeDetail);
+                this.recipeDetails = recipeDetail;
                 //this.image = recipeDetail.image;
             });
         })

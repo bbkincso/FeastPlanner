@@ -1,1 +1,29 @@
-<p>new-menu works!</p>
+<div class="container">
+    <h3>Current Menu Card</h3>
+    <div class="row">
+        <div>
+            <label for="name">Add name</label>
+            <input type="text" id="name" #name>
+        </div>
+    </div>
+    <div class="row">
+        <div>
+            <label for="note">Add note</label>
+            <textarea id="note" rows="4" cols="50"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div>
+            <p>Recipes:</p>
+            <div *ngFor="let recipe of newMenu.recipes">
+                <img src="{{recipe.image}}" alt="{{recipe.title}}" class="img-responsive" style="max-height: 200px;">
+                <p>Title: {{recipe.title}}</p>
+                <p>Image: {{recipe.image}}</p>
+                <p>Ready in: {{recipe.readyInMinutes}}</p>
+                <p>SourceUrl: {{recipe.sourceUrl}}</p>
+                <hr>
+            </div>
+        </div>
+    </div>
+
+</div>

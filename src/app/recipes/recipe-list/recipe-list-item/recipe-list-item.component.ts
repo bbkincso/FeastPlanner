@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {RecipeListItem} from "../../../models/recipe-list-item.model";
 import {RecipeService} from "../../../services/recipe.service";
 import {Router} from "@angular/router";
+import {MenuService} from "../../../services/menu.service";
 
 @Component({
   selector: 'app-recipe-list-item',
@@ -15,7 +16,9 @@ export class RecipeListItemComponent implements OnInit {
    imageUri: string;
   // url: string = this.sourceUrl.substr(11);
 
-  constructor(private recipeService: RecipeService, private router: Router) {
+  constructor(private recipeService: RecipeService,
+              private router: Router,
+              private menuService: MenuService) {
     this.recipeService.getBaseUri().subscribe( (resp) => {
       this.imageUri = resp + this.recipeListItem.image;
     });
@@ -30,6 +33,11 @@ export class RecipeListItemComponent implements OnInit {
     console.log(recipe, 'recipe clicked');
     this.router.navigate(['recipes/recipe'], {queryParams: {url: recipe.sourceUrl}});
     //this.recipeService.onSelectedUrl.emit(recipe.sourceUrl);
+  }
+
+  addRecipeToMenuCard(recipe:RecipeListItem){
+    console.log(recipe, "InAddRecipe");
+    this.menuService.onAddRecipe.emit(recipe);
   }
 
 }
