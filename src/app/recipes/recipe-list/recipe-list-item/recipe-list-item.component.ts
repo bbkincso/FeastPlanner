@@ -11,15 +11,15 @@ import {Router} from "@angular/router";
 export class RecipeListItemComponent implements OnInit {
 
   @Input() recipeListItem: RecipeListItem;
-  imageUri: string = 'https://spoonacular.com/recipeImages/cabbage-salad-with-peanuts-723984.jpg';
-  // imageUri: string;
+  //imageUri: string = 'https://spoonacular.com/recipeImages/cabbage-salad-with-peanuts-723984.jpg';
+   imageUri: string;
   // url: string = this.sourceUrl.substr(11);
 
   constructor(private recipeService: RecipeService, private router: Router) {
-    // this.recipeService.getBaseUri().subscribe( (resp) => {
-    //   this.imageUri = resp + this.recipeListItem.image;
-    // });
-    // this.recipeService.getBaseUri();
+    this.recipeService.getBaseUri().subscribe( (resp) => {
+      this.imageUri = resp + this.recipeListItem.image;
+    });
+     this.recipeService.getBaseUri();
   }
 
   ngOnInit(): void {

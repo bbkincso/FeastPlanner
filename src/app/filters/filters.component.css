@@ -1,0 +1,47 @@
+form {
+    margin: 0px 20px 0px 20px;
+}
+
+#include {
+    width: 50%;
+    float: left;
+    margin-bottom: 10px;
+}
+
+#exclude {
+    width: 50%;
+    float: right;
+    margin-bottom: 10px;
+}
+
+.my-labels {
+    width: 150px;
+    float: left;
+}
+
+.my-labels-2 {
+    width: 100%;
+}
+
+#include-ingredient, #exclude-ingredients {
+    width: 70%;
+}
+
+.cuisine, .intolerance {
+    display: inline;
+    margin: 10px;
+}
+
+.my-dropdown-1 {
+    width: 50%;
+    float: left;
+}
+
+.my-dropdown-2 {
+    width: 50%;
+    float: right;
+}
+
+select {
+    width:85%;
+}

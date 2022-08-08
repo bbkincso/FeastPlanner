@@ -7,12 +7,13 @@ import { RecipeListItemComponent } from './recipes/recipe-list/recipe-list-item/
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
 import { HeaderComponent } from './header/header.component';
 import { RecipesComponent } from './recipes/recipes.component';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {FormsModule} from "@angular/forms";
+import { HttpClientModule} from "@angular/common/http";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppRoutingModule} from "./app-routing.module";
 import { MenuComponent } from './menu/menu.component';
 import { MenuListComponent } from './menu/menu-list/menu-list.component';
 import { NewMenuComponent } from './menu/new-menu/new-menu.component';
+import { FiltersComponent } from './filters/filters.component';
 
 @NgModule({
   declarations: [
@@ -24,13 +25,15 @@ import { NewMenuComponent } from './menu/new-menu/new-menu.component';
     RecipesComponent,
     MenuComponent,
     MenuListComponent,
-    NewMenuComponent
+    NewMenuComponent,
+    FiltersComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
