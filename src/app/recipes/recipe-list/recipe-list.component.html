@@ -1,15 +1,13 @@
-<app-filters></app-filters>
+
 <div class="row">
-<!--    <div class="col-xs-12">-->
-<!--        <button class="btn btn-success" (click)="showRecipes()">Show Recipes</button>-->
-<!--    </div>-->
-    <div class="col-xs-12">
+    <div class="col-md-12">
         <app-recipe-list-item
                 *ngFor="let listItem of recipeList"
                 [recipeListItem]="listItem"></app-recipe-list-item>
     </div>
 </div>
-<hr>
-<hr>
-<app-new-menu></app-new-menu>
+
+
+
+
 

@@ -11,7 +11,8 @@ import {map} from "rxjs/operators";
 })
 export class RecipeDetailComponent implements OnInit {
   sourceUrl: any;
-  recipeDetails = new RecipeDetails();
+  //recipeDetails: any;
+  recipeDetails = new RecipeDetails({});
   // @Input() recipe = new RecipeDetails({});
 
 
@@ -26,17 +27,17 @@ export class RecipeDetailComponent implements OnInit {
     // );
 
 
-      // this.recipeService.onSelectedUrl.subscribe(
-      //     (data) => {
-      //         this.recipeService.getRecipeDetails(data)
-      //             .subscribe((recipeDetail) => {
-      //                 this.recipeDetails = new RecipeDetails(recipeDetail);
-      //             });
-      //     });
+      this.recipeService.onSelectedUrl.subscribe(
+          (data) => {
+              this.recipeService.getRecipeDetails(data)
+                  .subscribe((recipeDetail) => {
+                      this.recipeDetails = new RecipeDetails(recipeDetail);
+                  });
+          });
 
       // this.recipeService.getRecipeDetails('http://www.thegraciouspantry.com/clean-eating-cilantro-salsa/')
-      //     .subscribe((recipeDetail) => {
-      //         this.recipeDetails = new RecipeDetails(recipeDetail);
+      //     .subscribe((data) => {
+      //         this.recipeDetails = new RecipeDetails(data);
       //         //this.image = recipeDetail.image;
       //     });
 }
@@ -54,9 +55,4 @@ export class RecipeDetailComponent implements OnInit {
             });
         })
   }
-
-    addToRecipe(recipe: RecipeDetails){
-        this.recipeService.onAddedRecipe.emit(recipe);
-        console.log('add to recipe clicked. recipe = ', recipe);
-    }
 }

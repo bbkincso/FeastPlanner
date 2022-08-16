@@ -1,35 +1,54 @@
-form {
-    margin: 0px 20px 0px 20px;
+#container{
+    background-color: gainsboro;
+}
+
+.row {
+    margin: 10px 20px 0px 20px;
+}
+
+hr {
+    margin: 0px 0px 10px 0px;
 }
 
 #include {
-    width: 50%;
+    padding: 0px;
+    display: flex;
+    align-items: center;
     float: left;
-    margin-bottom: 10px;
 }
 
 #exclude {
-    width: 50%;
+    display: flex;
+    align-items: center;
     float: right;
-    margin-bottom: 10px;
+    padding: 0px;
+}
+
+.my-col {
+    padding: 0px 0px 0px 15px;
+}
+
+.my-col-1 {
+    padding: 0px;
+}
+
+.my-col-2 {
+    padding: 0px 15px 0px 0px;
 }
 
 .my-labels {
-    width: 150px;
-    float: left;
-}
-
-.my-labels-2 {
-    width: 100%;
+    font-size: 20px;
 }
 
 #include-ingredient, #exclude-ingredients {
-    width: 70%;
+    padding: 0px;
 }
 
-.cuisine, .intolerance {
-    display: inline;
-    margin: 10px;
+#cuisine, #intolerance {
+    display: inline-block;
+    margin-right: 20px;
+    font-size: 18px;
+    padding: 5px 0px;
 }
 
 .my-dropdown-1 {
@@ -42,6 +61,13 @@ form {
     float: right;
 }
 
+#apply-btn {
+    float: right;
+    margin: 5px 35px;
+    padding: 5px 8px;
+}
+
 select {
-    width:85%;
+    width: 98%;
+    font-size: 18px;
 }

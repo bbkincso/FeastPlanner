@@ -1,0 +1,31 @@
+#recipe-item-container {
+    width: 200px;
+    display: inline-block;
+    margin-right:30px;
+    margin-bottom:35px;
+    background-color: #404040;
+    border: 1px solid lightslategray;
+    border-radius: 5px;
+}
+
+#title {
+    width: 100%;
+    height: 50px;
+    position: relative;
+}
+
+#title p {
+    position: absolute;
+    bottom: 10%;
+    color: white;
+}
+
+img {
+    width:100%;
+    height:100px;
+    object-fit: cover;
+}
+
+#add-to-menu-btn {
+    width: 100%;
+}

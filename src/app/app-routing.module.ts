@@ -13,10 +13,11 @@ const appRoutes: Routes = [
     { path: 'login/callback', component:OktaCallbackComponent},
     { path: 'login', component:LoginComponent},
     { path: '', redirectTo: '/recipes', pathMatch: 'full'},
-    { path: 'recipes', component:RecipesComponent, children: [
-            { path: '', component:RecipeListComponent},
-            { path: 'recipe', component:RecipeDetailComponent}
-        ]},
+    { path: 'recipes', component:RecipesComponent},
+    // { path: 'recipes', component:RecipesComponent, children: [
+    //         { path: '', component:RecipeListComponent},
+    //         { path: 'recipe', component:RecipeDetailComponent}
+    //     ]},
     { path: 'menus', component:MenuComponent, canActivate: [OktaAuthGuard], children: [
             { path: '', component:MenuListComponent}
         ]}

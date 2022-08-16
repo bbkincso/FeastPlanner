@@ -1,49 +1,70 @@
-<div class="container">
+<div id="container">
     <div class="row">
             <form [formGroup]="filtersForm" (ngSubmit)="onSubmit()">
-                <div class="form-group" id="include">
-                    <label for="include-ingredient" class="my-labels">include Ingredient</label>
-                    <input type="text" id="include-ingredient" formControlName="includeIngredient" class="form-control">
-                </div>
-                <div class="form-group" id="exclude">
-                    <label for="exclude-ingredients" class="my-labels">exclude Ingredients</label>
-                    <input type="text" id="exclude-ingredients" formControlName="excludeIngredients" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="intolerance" class="my-labels-2">Select Allergies</label>
-                    <div *ngFor="let intolerance of intolerances" class="intolerance" id="intolerance">
-                        <label>
-                            <input type="checkbox" [value]="intolerance" (change)="onCheckboxChange($event, 'intoleranceArray')" />
-                            {{intolerance}}
-                        </label>
+                <div class="row">
+                    <div class="form-group col-md-6" id="include">
+                        <div class="col-md-4 my-col">
+                            <label for="include-ingredient" class="my-labels">Include Ingredient:</label>
+
+                        </div>
+                        <div class="col-md-8 my-col-2">
+                            <input type="text" id="include-ingredient" formControlName="includeIngredient" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6" id="exclude">
+                        <div class="col-md-4 my-col-1">
+                            <label for="exclude-ingredients" class="my-labels">Exclude Ingredients: </label>
+                        </div>
+                        <div class="col-md-8 my-col-2">
+                            <input type="text" id="exclude-ingredients" formControlName="excludeIngredients" class="form-control">
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="cuisine" class="my-labels-2">Select Cuisine</label>
-                    <div *ngFor="let c of cuisine" class="cuisine" id="cuisine">
-                        <label>
-                            <input type="checkbox" [value]="c" (change)="onCheckboxChange($event, 'cuisineArray')" />
-                            {{c}}
-                        </label>
+                <hr>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="intolerance" class="my-labels">Select Allergies</label>
                     </div>
                 </div>
-                <div class="form-group my-dropdown-1">
-                    <select formControlName="diet" class="form-control">
-                        <option class="placeholder" selected disabled value="">Select Diet</option>
-                        <option *ngFor="let diet of diets">{{ diet }}</option>
-                    </select>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <div *ngFor="let intolerance of intolerances" id="intolerance">
+                                <input type="checkbox" [value]="intolerance" (change)="onCheckboxChange($event, 'intoleranceArray')" />
+                                {{intolerance}}
+                        </div>
+                    </div>
                 </div>
-
-                <div class="form-group my-dropdown-2">
-                    <select formControlName="course" class="form-control">
-                        <option class="placeholder" selected disabled value="">Select Course</option>
-                        <option *ngFor="let course of courses">{{ course }}</option>
-                    </select>
+                <hr>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="cuisine" class="my-labels">Select Cuisine</label>
+                    </div>
                 </div>
-
-                <button class="btn btn-primary" type="submit">Apply</button>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <div *ngFor="let c of cuisine" id="cuisine">
+                                <input type="checkbox" [value]="c" (change)="onCheckboxChange($event, 'cuisineArray')" />
+                                {{c}}
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="form-group my-dropdown-1 col-md-6 my-col-1">
+                        <select formControlName="diet" class="form-control">
+                            <option class="placeholder" selected disabled value="">Select Diet</option>
+                            <option *ngFor="let diet of diets">{{ diet }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group my-dropdown-2 col-md-6 my-col-1">
+                        <select formControlName="course" class="form-control">
+                            <option class="placeholder" selected disabled value="">Select Course</option>
+                            <option *ngFor="let course of courses">{{ course }}</option>
+                        </select>
+                    </div>
+                </div>
+                    <button class="my-button" id="apply-btn" type="submit">Apply</button>
             </form>
-        <hr>
         </div>
 </div>
 

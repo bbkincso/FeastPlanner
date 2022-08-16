@@ -5,6 +5,9 @@ import {HttpClient} from "@angular/common/http";
 export class MenuService {
 
     onAddRecipe = new EventEmitter<any>();
+    onNewAddedRecipe = new EventEmitter<any>();
+
+
 
     constructor(private http: HttpClient) {
     }

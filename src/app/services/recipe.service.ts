@@ -9,7 +9,7 @@ import {FormArray, FormGroup} from "@angular/forms";
 export class RecipeService {
 
     onSelectedUrl = new EventEmitter<string>();
-    onAddedRecipe = new EventEmitter<RecipeDetails>();
+    // onAddedRecipe = new EventEmitter<RecipeDetails>();
     onAddedFilters = new EventEmitter<any>();
 
     public recipeList: any;

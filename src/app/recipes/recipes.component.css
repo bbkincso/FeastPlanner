@@ -1,0 +1,60 @@
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+h3 {
+    color: #404040;
+    font-size: 24px;
+    font-weight: bolder;
+    font-family: Arial;
+}
+
+#row-recipes {
+    margin-top: 20px;
+    padding-top: 25px;
+    background-color: #d9d9d9;
+}
+
+#row-recipe-list {
+    margin-top: 20px;
+    margin-left: 45px;
+}
+
+#h3-recipes {
+    font-weight: normal;
+    margin-bottom: 22px;
+}
+
+#row-display-info {
+    float: right;
+    margin-right: 45px;
+    padding: 0px;
+}
+
+.show-menu-btn {
+    padding: 10px;
+    width: 100%;
+}
+
+p {
+    font-size: 20px;
+    font-family: Arial;
+}
+
+#select {
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+#recipe {
+    margin-top: 20px;
+}
+
+#menu {
+    margin-top: 20px;
+}
+

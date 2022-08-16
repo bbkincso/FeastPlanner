@@ -31,8 +31,8 @@ export class RecipeListItemComponent implements OnInit {
 
   selectRecipe(recipe: RecipeListItem){
     console.log(recipe, 'recipe clicked');
-    this.router.navigate(['recipes/recipe'], {queryParams: {url: recipe.sourceUrl}});
-    //this.recipeService.onSelectedUrl.emit(recipe.sourceUrl);
+    //this.router.navigate(['recipes/recipe'], {queryParams: {url: recipe.sourceUrl}});
+    this.recipeService.onSelectedUrl.emit(recipe.sourceUrl);
   }
 
   addRecipeToMenuCard(recipe:RecipeListItem){

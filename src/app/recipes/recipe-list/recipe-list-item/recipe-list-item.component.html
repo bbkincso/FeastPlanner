@@ -1,13 +1,12 @@
-<a style="cursor: pointer;"
-   class="list-group-item clearfix"
-   (click)="selectRecipe(recipeListItem)">
-
-    <span class="pull-left">
-        <img [src]="imageUri" alt="{{recipeListItem.title}}" class="img-responsive" style="max-height: 50px;">
-    </span>
-    <div class="pull-right">
-        <h4 class="list-group-item-heading">{{recipeListItem.title}}</h4>
-        <p class="list-group-item-text">Ready in {{recipeListItem.readyInMinutes}} minutes</p>
+<div id="recipe-item-container">
+    <div style="cursor: pointer;"
+         (click)="selectRecipe(recipeListItem)">
+        <div id="title">
+            <p class="list-group-item-heading">{{recipeListItem.title}}</p>
+        </div>
+        <div id="image">
+            <img [src]="imageUri" alt="{{recipeListItem.title}}" class="img-responsive" >
+        </div>
     </div>
-</a>
-<button class="btn btn-primary" (click)="addRecipeToMenuCard(recipeListItem)">Add to Menu Card</button>
+    <button class="my-button" id="add-to-menu-btn" (click)="addRecipeToMenuCard(recipeListItem)">Add to Menu</button>
+</div>
