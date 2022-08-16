@@ -48,13 +48,13 @@ export class RecipeListComponent implements OnInit {
     //             });
     //
     //               });
-
-      // this.recipeService.getRecipeList(
-      //     this.createUrl(this.recipeQueryParams.number, this.recipeQueryParams.offset))
-      //     .subscribe((response) => {
-      //         this.recipeList = response;
-      //         console.log(response, 'RECIPE LIST');
-      //     });
+    //
+    //   this.recipeService.getRecipeList(
+    //       this.createUrl(this.recipeQueryParams.number, this.recipeQueryParams.offset))
+    //       .subscribe((response) => {
+    //           this.recipeList = response;
+    //           console.log(response, 'RECIPE LIST');
+    //       });
 
   }
 

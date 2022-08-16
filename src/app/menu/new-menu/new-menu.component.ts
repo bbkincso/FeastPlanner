@@ -37,4 +37,7 @@ export class NewMenuComponent implements OnInit {
         })
   }
 
+    saveMenuCard() {
+        console.log(this.newMenu);
+    }
 }

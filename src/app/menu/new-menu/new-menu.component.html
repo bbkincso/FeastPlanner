@@ -3,13 +3,15 @@
     <div class="row">
         <div>
             <label for="name">Add name</label>
-            <input type="text" id="name" #name>
+            <input type="text" id="name" [(ngModel)]="newMenu.name">
+<!--            {{newMenu.name}}-->
         </div>
     </div>
     <div class="row">
         <div>
             <label for="note">Add note</label>
-            <textarea id="note" rows="4" cols="50"></textarea>
+            <textarea  id="note" rows="4" cols="50" [(ngModel)]="newMenu.note"></textarea>
+<!--            {{newMenu.note}}-->
         </div>
     </div>
     <div class="row">
@@ -25,5 +27,6 @@
             </div>
         </div>
     </div>
+    <button class="btn btn-primary" (click)="saveMenuCard()">Save</button>
 
 </div>

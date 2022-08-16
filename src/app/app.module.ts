@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {Injector, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -14,6 +14,18 @@ import { MenuComponent } from './menu/menu.component';
 import { MenuListComponent } from './menu/menu-list/menu-list.component';
 import { NewMenuComponent } from './menu/new-menu/new-menu.component';
 import { FiltersComponent } from './filters/filters.component';
+import { LoginComponent } from './login/login.component';
+import { LoginStatusComponent } from './login-status/login-status.component';
+import {OKTA_CONFIG, OktaAuthModule} from "@okta/okta-angular";
+import {Router} from "@angular/router";
+import myAppConfig from "./config/my-app-config";
+
+const oktaConfig = Object.assign({
+  onAuthRequired: (oktaAuth: any, injector: Injector) => {
+    const router = injector.get(Router);
+    router.navigate(['/login']);
+  }
+}, myAppConfig.oidc);
 
 @NgModule({
   declarations: [
@@ -27,15 +39,20 @@ import { FiltersComponent } from './filters/filters.component';
     MenuListComponent,
     NewMenuComponent,
     FiltersComponent,
+    LoginComponent,
+    LoginStatusComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    OktaAuthModule
   ],
-  providers: [],
+  providers: [
+      { provide: OKTA_CONFIG, useValue: oktaConfig }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
