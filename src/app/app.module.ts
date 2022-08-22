@@ -19,6 +19,7 @@ import { LoginStatusComponent } from './login-status/login-status.component';
 import {OKTA_CONFIG, OktaAuthModule} from "@okta/okta-angular";
 import {Router} from "@angular/router";
 import myAppConfig from "./config/my-app-config";
+import { MenuListItemComponent } from './menu/menu-list/menu-list-item/menu-list-item.component';
 
 const oktaConfig = Object.assign({
   onAuthRequired: (oktaAuth: any, injector: Injector) => {
@@ -41,6 +42,7 @@ const oktaConfig = Object.assign({
     FiltersComponent,
     LoginComponent,
     LoginStatusComponent,
+    MenuListItemComponent,
   ],
   imports: [
     BrowserModule,

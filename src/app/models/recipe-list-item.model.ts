@@ -5,10 +5,10 @@ export class RecipeListItem {
     public sourceUrl: string;
     public readyInMinutes: number;
 
-    // constructor() {
-    // }
-
-    constructor(title: string, image: string, sourceUrl: string, readyInMinutes: number) {
+    constructor(title: string,
+                image: string,
+                sourceUrl: string,
+                readyInMinutes: number) {
         this.title = title;
         this.image = image;
         this.sourceUrl = sourceUrl;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {OktaAuthService} from "@okta/okta-angular";
+import {MenuService} from "../services/menu.service";
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ export class HeaderComponent implements OnInit {
   isAuthenticated: boolean = false;
   userFullName: string = "";
 
-  constructor(private oktaAuthService: OktaAuthService) {
+  constructor(private oktaAuthService: OktaAuthService, private menuService: MenuService) {
       // this.oktaAuthService.$authenticationState.subscribe(
       //     isAuth => this.isAuthenticated = isAuth
       // );
@@ -57,6 +58,7 @@ export class HeaderComponent implements OnInit {
       this.oktaAuthService.getUser().then(
           (res) => {
             this.userFullName = res.name;
+            this.menuService.userSubject.next(res.email);
           }
       );
     }

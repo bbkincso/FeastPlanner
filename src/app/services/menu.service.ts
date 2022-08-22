@@ -1,27 +1,53 @@
 import {EventEmitter, Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
+import {RecipeListItem} from "../models/recipe-list-item.model";
+import {map} from "rxjs/operators";
+import {MenuListItem} from "../models/menu-list-item-model";
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({providedIn:'root'})
 export class MenuService {
 
-    onAddRecipe = new EventEmitter<any>();
-    onNewAddedRecipe = new EventEmitter<any>();
+    // onAddRecipe = new EventEmitter<any>();
+   // onChangedMenuList = new EventEmitter<any>();
+    userSubject = new BehaviorSubject<string>('');
+    onAddedRecipe = new BehaviorSubject<any>('');
 
-
+    public menuList: any[];
 
     constructor(private http: HttpClient) {
     }
 
+    getMenuList(user: String) {
+        return this.http
+            .get<MenuListItem[]>('http://localhost:8080/menus/user/'+user)
+            .pipe(
+                map(responseData => {
+                    // console.log(responseData);
+                    const response: any[] = [];
+                    for (const key in responseData) {
+                        if (responseData.hasOwnProperty(key)) {
+                            response.push({...responseData[key]})
+                        }
+                    }
+                    console.log(response);
+                    return response;
+                }))
+    }
 
+    saveMenu(menu: MenuListItem) {
+        return this.http.post<MenuListItem>('http://localhost:8080/menus', menu)
+            .subscribe(respponseData => {
+            });
+        // add error handling!
+    }
 
-    // getMenuList() {}
-    //
-    // getMenu() {}
-    //
-    // saveMenu() {}
-    //
     // editMenu() {}
     //
-    // deleteMenu() {}
+
+
+    deleteMenu(id: number) {
+        return this.http.delete('http://localhost:8080/menus/' + id);
+    }
 
 }

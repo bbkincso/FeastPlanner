@@ -4,15 +4,17 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {catchError, filter, map} from "rxjs/operators";
 import {RecipeDetails} from "../models/recipeDetails.model";
 import {FormArray, FormGroup} from "@angular/forms";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({providedIn: 'root'})
 export class RecipeService {
 
-    onSelectedUrl = new EventEmitter<string>();
+    onSelectedUrl = new BehaviorSubject<any>('');
     // onAddedRecipe = new EventEmitter<RecipeDetails>();
     onAddedFilters = new EventEmitter<any>();
+    onDisplayChange = new BehaviorSubject<string>('select');
 
-    public recipeList: any;
+    //public recipeList: any;
     baseUri: any;
 
     private recipeList2: RecipeListItem[] = [

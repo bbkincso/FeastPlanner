@@ -1,1 +1,8 @@
-<p>menu list component works!</p>
+<div class="row">
+    <p>in menu list</p>
+    <div class="col-md-12">
+        <app-menu-list-item
+                *ngFor="let listItem of menuList"
+                [menuListItem]="listItem"></app-menu-list-item>
+    </div>
+</div>

@@ -9,7 +9,7 @@ import {RecipeDetails} from "../models/recipeDetails.model";
   styleUrls: ['./recipes.component.css']
 })
 export class RecipesComponent implements OnInit {
-  showInfo: string = 'recipe';
+  showInfo: string;
   sourceUrl: string = '';
   addedRecipes: any[] = [];
 
@@ -17,22 +17,27 @@ export class RecipesComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.menuService.onAddRecipe.subscribe(
-        (data) => {
-            this.sourceUrl = data.sourceUrl;
-
-            console.log(data);
-            console.log(this.sourceUrl);
-
-            this.recipeService.getRecipeDetails(this.sourceUrl)
-                .subscribe((recipeDetail) => {
-                   this.addedRecipes.push(recipeDetail);
-                  console.log(recipeDetail);
-
-                    this.menuService.onNewAddedRecipe.emit(recipeDetail);
-                });
-
+    this.recipeService.onDisplayChange
+        .subscribe(data => {
+          this.showInfo = data;
         })
+
+    // this.menuService.onAddRecipe.subscribe(
+    //     (data) => {
+    //         this.sourceUrl = data.sourceUrl;
+    //
+    //         console.log(data);
+    //         console.log(this.sourceUrl);
+    //
+    //         this.recipeService.getRecipeDetails(this.sourceUrl)
+    //             .subscribe((recipeDetail) => {
+    //                this.addedRecipes.push(recipeDetail);
+    //               console.log(recipeDetail);
+    //
+    //                 this.menuService.onNewAddedRecipe.emit(recipeDetail);
+    //             });
+    //
+    //     })
 
   }
 
