@@ -1,0 +1,20 @@
+<div class="row">
+    <h3 id="">{{menu.name}}</h3>
+    <p>{{menu.note}}</p>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-md-5" >
+        <div *ngFor="let recipe of recipes">
+            <img src="{{recipe.image}}" alt="{{recipe.title}}">
+            <p>{{recipe.title}}</p>
+            <p></p>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-5" >
+        <button class="my-button show-menu-btn" >Shopping list</button>
+
+<!--        <div *ngIf="showInfo == 'recipe'" id="recipe">-->
+<!--            <app-recipe-detail></app-recipe-detail>-->
+<!--        </div>-->
+    </div>
+</div>

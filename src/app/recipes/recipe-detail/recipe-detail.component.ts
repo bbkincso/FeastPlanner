@@ -44,15 +44,15 @@ export class RecipeDetailComponent implements OnInit {
 
 
    ngOnInit(): void {
-    this.route
-        .queryParams.subscribe( params => {
-            // this.sourceUrl = params['url'];
-            // console.log(this.sourceUrl);
-        this.recipeService.getRecipeDetails(params['url'])
-            .subscribe((recipeDetail) => {
-                this.recipeDetails = recipeDetail;
-                //this.image = recipeDetail.image;
-            });
-        })
+    // this.route
+    //     .queryParams.subscribe( params => {
+    //         // this.sourceUrl = params['url'];
+    //         // console.log(this.sourceUrl);
+    //     this.recipeService.getRecipeDetails(params['url'])
+    //         .subscribe((recipeDetail) => {
+    //             this.recipeDetails = recipeDetail;
+    //             //this.image = recipeDetail.image;
+    //         });
+    //     })
   }
 }

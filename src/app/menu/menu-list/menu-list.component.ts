@@ -18,7 +18,7 @@ export class MenuListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      console.log(this.user);
+      //console.log(this.user);
       this.menuService.getMenuList(this.user)
         .subscribe((response) => {
           this.menuList = response;

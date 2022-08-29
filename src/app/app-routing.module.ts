@@ -8,6 +8,7 @@ import {MenuListComponent} from "./menu/menu-list/menu-list.component";
 import {NewMenuComponent} from "./menu/new-menu/new-menu.component";
 import {OktaAuthGuard, OktaCallbackComponent} from "@okta/okta-angular";
 import {LoginComponent} from "./login/login.component";
+import {MenuDetailsComponent} from "./menu/menu-details/menu-details.component";
 
 const appRoutes: Routes = [
     { path: 'login/callback', component:OktaCallbackComponent},
@@ -19,7 +20,8 @@ const appRoutes: Routes = [
     //         { path: 'recipe', component:RecipeDetailComponent}
     //     ]},
     { path: 'menus', component:MenuComponent, canActivate: [OktaAuthGuard], children: [
-            { path: '', component:MenuListComponent}
+            { path: '', component:MenuListComponent},
+            { path: ':id', component:MenuDetailsComponent}
         ]}
 
 ];

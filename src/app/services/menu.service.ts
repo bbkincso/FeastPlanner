@@ -12,6 +12,7 @@ export class MenuService {
    // onChangedMenuList = new EventEmitter<any>();
     userSubject = new BehaviorSubject<string>('');
     onAddedRecipe = new BehaviorSubject<any>('');
+    onSelectedMenu = new BehaviorSubject(<any>(''));
 
     public menuList: any[];
 
