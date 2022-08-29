@@ -4,14 +4,13 @@ import {RecipeListItem} from "../models/recipe-list-item.model";
 import {map} from "rxjs/operators";
 import {MenuListItem} from "../models/menu-list-item-model";
 import {BehaviorSubject, Observable} from "rxjs";
+import {RecipeDetails} from "../models/recipeDetails.model";
 
 @Injectable({providedIn:'root'})
 export class MenuService {
 
-    // onAddRecipe = new EventEmitter<any>();
-   // onChangedMenuList = new EventEmitter<any>();
     userSubject = new BehaviorSubject<string>('');
-    onAddedRecipe = new BehaviorSubject<any>('');
+    menuRecipes: RecipeDetails[] =[];
     onSelectedMenu = new BehaviorSubject(<any>(''));
 
     public menuList: any[];

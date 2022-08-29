@@ -9,8 +9,8 @@ import {BehaviorSubject} from "rxjs";
 @Injectable({providedIn: 'root'})
 export class RecipeService {
 
-    onSelectedUrl = new BehaviorSubject<any>('');
-    // onAddedRecipe = new EventEmitter<RecipeDetails>();
+    currentRecipe: RecipeDetails;
+    recipeUrls: string;
     onAddedFilters = new EventEmitter<any>();
     onDisplayChange = new BehaviorSubject<string>('select');
 
@@ -25,6 +25,7 @@ export class RecipeService {
         new RecipeListItem('Cilantro Salsa', 'Cilantro-Salsa-667917.jpg',
             'http://www.thegraciouspantry.com/clean-eating-cilantro-salsa/', 20),
     ];
+
 
     constructor(private http: HttpClient) {
     }

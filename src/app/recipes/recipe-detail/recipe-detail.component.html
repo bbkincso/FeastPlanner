@@ -1,21 +1,21 @@
-<div class="list-group-item clearfix" *ngIf="recipeDetails != undefined">
+<div class="list-group-item clearfix" *ngIf="recipeService.currentRecipe != undefined">
     <span>
-        <img src="{{recipeDetails.image}}" alt="{{recipeDetails.title}}" class="img-responsive" style="max-height: 200px;">
+        <img src="{{recipeService.currentRecipe.image}}" alt="{{recipeService.currentRecipe.title}}" class="img-responsive" style="max-height: 200px;">
     </span>
     <div>
-        <h4 class="list-group-item-heading">{{recipeDetails.title}}</h4>
-        <p class="list-group-item-text">Ready in {{recipeDetails.readyInMinutes}} minutes</p>
-        <p class="list-group-item-text">{{recipeDetails.dairyFree}}</p>
-        <p class="list-group-item-text">{{recipeDetails.instructions}}</p>
+        <h4 class="list-group-item-heading">{{recipeService.currentRecipe.title}}</h4>
+        <p class="list-group-item-text">Ready in {{recipeService.currentRecipe.readyInMinutes}} minutes</p>
+        <p class="list-group-item-text">{{recipeService.currentRecipe.dairyFree}}</p>
+        <p class="list-group-item-text">{{recipeService.currentRecipe.instructions}}</p>
         <ul class="list-group">
             <li class="list-group-item"
-                *ngFor="let ingredient of recipeDetails.extendedIngredients">
-                {{ingredient.name}} - {{ingredient.amount}} - {{ingredient.unit}}
+                *ngFor="let ingredient of recipeService.currentRecipe.extendedIngredients">
+                {{ingredient.name}} - {{ingredient.measures.metric.amount}} - {{ingredient.measures.metric.unitLong}}
             </li>
         </ul>
         <ul class="list-group">
             <li class="list-group-item"
-                *ngFor="let instruction of recipeDetails.analyzedInstructions">
+                *ngFor="let instruction of recipeService.currentRecipe.analyzedInstructions">
                 <p *ngFor="let step of instruction.steps">
                     {{step.number}} : {{step.step}}
                 </p>

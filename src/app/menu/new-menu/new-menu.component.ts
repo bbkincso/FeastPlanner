@@ -16,54 +16,14 @@ export class NewMenuComponent implements OnInit{
   newMenu = new Menu();
   sourceUrl: string = '';
   recipes: string ='';
-  menu = new MenuListItem('', '', '', '');
+  //menu = new MenuListItem('', '', '', '');
   user: string;
 
   constructor(private menuService: MenuService, private recipeService: RecipeService) {
-    // this.menuService.onNewAddedRecipe.subscribe(
-    //     (data) => {
-    //       this.newMenu.recipes = data;
-    //       console.log('WHAT')
-    //     }
-    // )
-
-    // this.menuService.onAddRecipe.subscribe(
-    //     (data) => {
-    //       this.sourceUrl = data.sourceUrl;
-    //
-    //       console.log('menu data');
-    //       console.log(data);
-    //       console.log(this.sourceUrl);
-    //
-    //       this.recipeService.getRecipeDetails(this.sourceUrl)
-    //           .subscribe((recipeDetail) => {
-    //             //this.recipe = recipeDetail;
-    //             this.newMenu.recipes.push(recipeDetail);
-    //             //this.image = recipeDetail.image;
-    //           });
-    //
-    //     })
   }
 
   ngOnInit(): void {
-    this.menuService.onAddedRecipe.subscribe(
-        (data) => {
-          //this.sourceUrl = data.sourceUrl;
-
-          console.log('menu data');
-          console.log(data);
-          //console.log(this.sourceUrl);
-            this.recipes = this.recipes + ', ' + data.sourceUrl;
-            console.log(this.recipes);
-
-                this.recipeService.getRecipeDetails(data.sourceUrl)
-              .subscribe((recipeDetail) => {
-                //this.recipe = recipeDetail;
-                this.newMenu.recipes.push(recipeDetail);
-                //this.image = recipeDetail.image;
-              });
-        })
-
+      this.newMenu.recipes = this.menuService.menuRecipes;
       this.menuService.userSubject.subscribe(data => {
           this.user = data;
       })
@@ -72,12 +32,6 @@ export class NewMenuComponent implements OnInit{
 
 
     saveMenuCard() {
-        this.menu.userEmail = this.user;
-        this.menu.name = this.newMenu.name;
-        this.menu.note = this.newMenu.note;
-        this.menu.recipes = this.recipes;
-
-        console.log(this.menu);
-        this.menuService.saveMenu(this.menu);
+        this.menuService.saveMenu(new MenuListItem(this.user, this.newMenu.name, this.newMenu.note, this.recipeService.recipeUrls));
     }
 }

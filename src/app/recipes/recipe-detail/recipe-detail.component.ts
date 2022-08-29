@@ -1,22 +1,25 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {RecipeService} from "../../services/recipe.service";
 import {RecipeDetails} from "../../models/recipeDetails.model";
 import {ActivatedRoute, Params} from "@angular/router";
 import {map} from "rxjs/operators";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html',
   styleUrls: ['./recipe-detail.component.css']
 })
-export class RecipeDetailComponent implements OnInit {
+export class RecipeDetailComponent implements OnInit, OnDestroy{
   sourceUrl: any;
   //recipeDetails: any;
-  recipeDetails = new RecipeDetails({});
+  //recipeDetails = new RecipeDetails({});
   // @Input() recipe = new RecipeDetails({});
+    //subscription1$: Subscription;
+    //subscription2$: Subscription;
 
 
-  constructor(private recipeService: RecipeService,
+  constructor(public recipeService: RecipeService,
               private route: ActivatedRoute) {
 
     // this.recipeService.onSelectedUrl.subscribe(
@@ -27,13 +30,8 @@ export class RecipeDetailComponent implements OnInit {
     // );
 
 
-      this.recipeService.onSelectedUrl.subscribe(
-          (data) => {
-              this.recipeService.getRecipeDetails(data)
-                  .subscribe((recipeDetail) => {
-                      this.recipeDetails = new RecipeDetails(recipeDetail);
-                  });
-          });
+
+
 
       // this.recipeService.getRecipeDetails('http://www.thegraciouspantry.com/clean-eating-cilantro-salsa/')
       //     .subscribe((data) => {
@@ -54,5 +52,24 @@ export class RecipeDetailComponent implements OnInit {
     //             //this.image = recipeDetail.image;
     //         });
     //     })
+
+       // this.subscription1$ = this.recipeService.onSelectedUrl.subscribe(
+       //     (data) => {
+       //         this.recipeService.getRecipeDetails(data)
+       //             .subscribe((recipeDetail) => {
+       //                 //this.recipeDetails = new RecipeDetails(recipeDetail);
+       //                 this.recipeService.currentRecipe = new RecipeDetails(recipeDetail);
+       //             });
+       //     });
+
+       // this.subscription2$ = this.recipeService.onSelectedRecipe.subscribe(
+       //     (data) => {
+       //         this.recipeService.currentRecipe = new RecipeDetails(data);
+       //     });
   }
+
+    ngOnDestroy(): void {
+      //this.subscription1$.unsubscribe();
+      //this.subscription2$.unsubscribe();
+    }
 }

@@ -3,18 +3,26 @@
     <p>{{menu.note}}</p>
 </div>
 <div class="row">
-    <div class="col-xs-12 col-md-5" >
-        <div *ngFor="let recipe of recipes">
+    <div class="col-xs-12 col-md-5" id="recipes">
+        <div *ngFor="let recipe of recipes" (click)="showRecipe(recipe)">
             <img src="{{recipe.image}}" alt="{{recipe.title}}">
             <p>{{recipe.title}}</p>
             <p></p>
         </div>
     </div>
-    <div class="col-xs-12 col-md-5" >
-        <button class="my-button show-menu-btn" >Shopping list</button>
+    <div class="col-xs-12 col-md-5" id="displayBlock">
+        <button class="my-button" id="showShoppingList" (click)="showShoppingList()">Shopping list</button>
 
-<!--        <div *ngIf="showInfo == 'recipe'" id="recipe">-->
-<!--            <app-recipe-detail></app-recipe-detail>-->
-<!--        </div>-->
+        <div *ngIf="showBlock == 'recipe'" id="recipe">
+            <app-recipe-detail></app-recipe-detail>
+        </div>
+        <div *ngIf="showBlock == 'shoppingList'" id="shoppingList">
+            <div *ngFor="let item of shoppingList">
+                <p>{{item.name}}: {{item.amount}} {{item.unit}}</p>
+            </div>
+        </div>
+        <div *ngIf="showBlock == 'start'" id="start">
+            <p>Click on recipes for details!</p>
+        </div>
     </div>
 </div>
