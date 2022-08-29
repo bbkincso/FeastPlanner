@@ -21,7 +21,7 @@ export class RecipeListItemComponent implements OnInit {
     this.recipeService.getBaseUri().subscribe( (resp) => {
       this.imageUri = resp + this.recipeListItem.image;
     });
-     this.recipeService.getBaseUri();
+     //this.recipeService.getBaseUri();
   }
 
   ngOnInit(): void {

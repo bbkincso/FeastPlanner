@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {OktaAuthService} from "@okta/okta-angular";
 import {MenuService} from "../services/menu.service";
+import {Router} from "@angular/router";
+import {RecipeService} from "../services/recipe.service";
 
 @Component({
   selector: 'app-header',
@@ -12,7 +14,10 @@ export class HeaderComponent implements OnInit {
   isAuthenticated: boolean = false;
   userFullName: string = "";
 
-  constructor(private oktaAuthService: OktaAuthService, private menuService: MenuService) {
+  constructor(private oktaAuthService: OktaAuthService,
+              private menuService: MenuService,
+              private router: Router,
+              private recipeService: RecipeService) {
       // this.oktaAuthService.$authenticationState.subscribe(
       //     isAuth => this.isAuthenticated = isAuth
       // );
@@ -65,6 +70,12 @@ export class HeaderComponent implements OnInit {
    }
 
   private logOut() {
-    this.oktaAuthService.signOut();
+      this.recipeService.onDisplayChange.next('select');
+      this.oktaAuthService.signOut();
   }
+
+    navigate(url: string) {
+      this.recipeService.onDisplayChange.next('select');
+      this.router.navigateByUrl(url);
+    }
 }

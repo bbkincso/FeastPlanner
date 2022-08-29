@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {RecipeService} from "../services/recipe.service";
 import {MenuService} from "../services/menu.service";
 import {RecipeDetails} from "../models/recipeDetails.model";
@@ -41,8 +41,8 @@ export class RecipesComponent implements OnInit {
 
   }
 
-
   switchToMenuCard() {
     this.showInfo = 'menu';
   }
+
 }
