@@ -1,3 +1,14 @@
-a {
-    color: black;
+#menu-list-container {
+    padding-top: 40px;
+    padding-left: 15%;
+    padding-right: 15%;
+
+}
+
+h1 {
+    font-size: 28px;
+}
+
+#menu-list {
+    margin-top: 40px;
 }

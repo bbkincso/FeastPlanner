@@ -1,32 +1,30 @@
-<div class="container">
-    <h3>Current Menu Card</h3>
-    <div class="row">
-        <div>
-            <label for="name">Add name</label>
-            <input type="text" id="name" [(ngModel)]="newMenu.name">
-<!--            {{newMenu.name}}-->
-        </div>
+<div id="new-menu-container">
+    <div class="my-row">
+        <h3>Create your own Menu Card</h3>
     </div>
-    <div class="row">
-        <div>
-            <label for="note">Add note</label>
-            <textarea  id="note" rows="4" cols="50" [(ngModel)]="newMenu.note"></textarea>
-<!--            {{newMenu.note}}-->
-        </div>
+    <div class="my-row">
+        <input type="text" id="name" [(ngModel)]="newMenu.name" placeholder="Enter name">
     </div>
-    <div class="row">
-        <div>
-            <p>Recipes:</p>
-            <div *ngFor="let recipe of newMenu.recipes">
-                <img src="{{recipe.image}}" alt="{{recipe.title}}" class="img-responsive" style="max-height: 200px;">
-                <p>Title: {{recipe.title}}</p>
-                <p>Image: {{recipe.image}}</p>
-                <p>Ready in: {{recipe.readyInMinutes}}</p>
-                <p>SourceUrl: {{recipe.sourceUrl}}</p>
-                <hr>
+    <div class="my-row">
+        <textarea id="note" rows="4" cols="50" [(ngModel)]="newMenu.note"
+                  placeholder="You can add note here"
+                  maxlength="400"></textarea>
+    </div>
+    <div class="my-row">
+        <p>Recipes:</p>
+        <div *ngFor="let recipe of newMenu.recipes">
+            <div id="recipe-div">
+                <div id="image">
+                    <img src="{{recipe.image}}" alt="{{recipe.title}}" class="img-responsive" style="max-height: 200px;">
+                </div>
+                <div id="details">
+                    <p>Title{{recipe.title}}</p>
+                    <p id="ready">Ready in {{recipe.readyInMinutes}} minutes</p>
+                </div>
             </div>
         </div>
     </div>
-    <button class="my-button" (click)="saveMenuCard()">Save</button>
-
+    <div class="my-row">
+        <button class="my-button" id="save-menu-btn" (click)="saveMenuCard()">Save</button>
+    </div>
 </div>

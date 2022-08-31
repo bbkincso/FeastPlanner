@@ -1,0 +1,61 @@
+#new-menu-container{
+}
+h3{
+    font-size: 20px;
+    font-family: Arial;
+}
+
+p{
+    font-size: 18px;
+    font-family: Arial;
+}
+
+#ready {
+    margin-top: 10px;
+    font-size: 16px;
+    font-style: italic;
+}
+
+.my-row{
+    margin-bottom: 20px;
+}
+
+#name, #note {
+    width: 100%;
+    padding: 5px;
+}
+
+#recipe-div {
+    background-color: white;
+    width: 100%;
+    height: 100px;
+    border: 1px solid lightslategrey;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+#image {
+    float: left;
+    width: 25%;
+    height: 100%;
+}
+
+img {
+    width:100%;
+    height:100px;
+    object-fit: cover;
+    border-radius: 5px 0px 0px 5px;
+}
+
+#details {
+    float: right;
+    width: 75%;
+    padding: 10px 5px 5px 10px;
+}
+
+#save-menu-btn {
+    float: right;
+    width: 25%;
+    padding: 5px;
+}
+

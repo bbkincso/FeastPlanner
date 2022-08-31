@@ -4,7 +4,7 @@ import {RecipeDetails} from "./recipeDetails.model";
 export class Menu{
     id: number;
     userEmail: string;
-    name: string = 'New Menu';
+    name: string = '';
     note: string = '';
     recipes: RecipeDetails[] = [];
 }

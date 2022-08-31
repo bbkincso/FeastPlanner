@@ -1,12 +1,11 @@
-<div id="recipe-item-container">
+<div id="menu-item-container">
     <div style="cursor: pointer;"
+         id="details"
          (click)="selectMenuItem(menuListItem)">
-        <div id="name">
-            <p class="list-group-item-heading">{{menuListItem.name}}</p>
-        </div>
-        <div id="image">
-            <p class="list-group-item-heading">{{menuListItem.note}}</p>
-        </div>
+            <p id="title" class="list-group-item-heading">{{menuListItem.name}}</p>
+            <p id="note" class="list-group-item-heading">{{menuListItem.note}}</p>
     </div>
-    <button><span class="glyphicon glyphicon-trash" (click)="deleteListItem(menuListItem.id)"></span></button>
+    <div >
+        <button id="delete"><span class="glyphicon glyphicon-trash" (click)="deleteListItem(menuListItem.id)"></span></button>
+    </div>
 </div>

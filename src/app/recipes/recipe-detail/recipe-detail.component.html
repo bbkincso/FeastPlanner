@@ -1,25 +1,41 @@
-<div class="list-group-item clearfix" *ngIf="recipeService.currentRecipe != undefined">
-    <span>
-        <img src="{{recipeService.currentRecipe.image}}" alt="{{recipeService.currentRecipe.title}}" class="img-responsive" style="max-height: 200px;">
-    </span>
-    <div>
-        <h4 class="list-group-item-heading">{{recipeService.currentRecipe.title}}</h4>
-        <p class="list-group-item-text">Ready in {{recipeService.currentRecipe.readyInMinutes}} minutes</p>
-        <p class="list-group-item-text">{{recipeService.currentRecipe.dairyFree}}</p>
-        <p class="list-group-item-text">{{recipeService.currentRecipe.instructions}}</p>
+<div id="recipe-detail-container" *ngIf="recipeService.currentRecipe != undefined">
+    <div class="my-row-1">
+        <h2 class="list-group-item-heading">{{recipeService.currentRecipe.title}}</h2>
+    </div>
+    <div id="my-row-2">
+        <div id="recipe-image">
+            <img src="{{recipeService.currentRecipe.image}}" alt="{{recipeService.currentRecipe.title}}" class="img-responsive">
+        </div>
+        <div id="extra-details">
+            <p class="list-group-item-text">{{recipeService.currentRecipe.servings}} serving/s</p>
+            <p class="list-group-item-text ready" >Ready in {{recipeService.currentRecipe.readyInMinutes}} minutes</p>
+            <p *ngIf="recipeService.currentRecipe.glutenFree" class="list-group-item-text allergen">gluten free</p>
+            <p *ngIf="recipeService.currentRecipe.dairyFree" class="list-group-item-text allergen">dairy free</p>
+            <p *ngIf="recipeService.currentRecipe.vegetarian" class="list-group-item-text allergen">vegetarian</p>
+            <p *ngIf="recipeService.currentRecipe.vegan" class="list-group-item-text allergen">vegan</p>
+        </div>
+    </div>
+
+    <div class="my-row-1">
+        <button class="my-button btn-2" (click)="changeShowBlock('ingredients')">Show Ingredients</button>
+        <button class="my-button btn-2" id="my-btn-2" (click)="changeShowBlock('method')">Show Method</button>
+    </div>
+    <div class="my-row-1" *ngIf="showblock =='ingredients'">
         <ul class="list-group">
             <li class="list-group-item"
                 *ngFor="let ingredient of recipeService.currentRecipe.extendedIngredients">
-                {{ingredient.name}} - {{ingredient.measures.metric.amount}} - {{ingredient.measures.metric.unitLong}}
+                {{ingredient.name}}: {{ingredient.measures.metric.amount}} {{ingredient.measures.metric.unitLong}}
             </li>
         </ul>
+    </div>
+    <div class="my-row-1" *ngIf="showblock == 'method'">
         <ul class="list-group">
-            <li class="list-group-item"
+            <div
                 *ngFor="let instruction of recipeService.currentRecipe.analyzedInstructions">
-                <p *ngFor="let step of instruction.steps">
-                    {{step.number}} : {{step.step}}
-                </p>
-            </li>
+                <li class="list-group-item" *ngFor="let step of instruction.steps">
+                    {{step.number}}: {{step.step}}
+                </li>
+            </div>
         </ul>
     </div>
 </div>

@@ -1,1 +1,62 @@
+#recipe-detail-container {
+    background-color: white;
+    margin-bottom: 20px;
+    padding: 20px 20px 20px 20px;
+}
+.my-row-1{
+    width: 100%;
+    margin: 20px 0px;
 
+}
+
+#my-row-2 {
+    width: 100%;
+    height: 200px;
+    margin: 10px 0px;
+}
+
+#recipe-image {
+    width: 60%;
+    height: 200px;
+    float: left;
+}
+img {
+    height:100%;
+    width:100%;
+    object-fit: cover;
+}
+
+#extra-details {
+    padding: 20px 10px;
+    width: 40%;
+    float: left;
+}
+
+
+h2 {
+    font-size: 20px;
+    font-family: Arial;
+    font-weight: bolder;
+}
+p, li {
+    font-size: 16px;
+    font-family: Arial;
+}
+.p-2, .allergen {
+    font-style: italic;
+}
+
+.btn-2 {
+    display: inline-block;
+    width: 49%;
+    margin: 0;
+    padding: 5px;
+}
+
+#my-btn-2 {
+    float: right;
+}
+
+li {
+    border: none;
+}

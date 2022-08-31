@@ -8,19 +8,19 @@
     </div>
 </div>
 <div class="row" id="row-recipes">
-    <div class="col-md-5" id="row-recipe-list">
+    <div class="col-md-5" id="col-recipe-list">
         <h3 id="h3-recipes">Recipes</h3>
         <app-recipe-list></app-recipe-list>
     </div>
-    <div class="col-xs-12 col-md-6" id="row-display-info">
+    <div class="col-xs-12 col-md-6" id="col-display-info">
         <button class="my-button show-menu-btn" (click)="switchToMenuCard()">Show Menu</button>
-        <div *ngIf="showInfo == 'select'" id="select">
+        <div *ngIf="showInfo == 'select'" id="select" class="display-block">
             <p>Click on recipes for details!</p>
         </div>
-        <div *ngIf="showInfo == 'menu'" id="menu">
+        <div *ngIf="showInfo == 'menu'" id="menu" class="display-block">
             <app-new-menu></app-new-menu>
         </div>
-        <div *ngIf="showInfo == 'recipe'" id="recipe">
+        <div *ngIf="showInfo == 'recipe'" id="recipe" class="display-block">
             <app-recipe-detail></app-recipe-detail>
         </div>
     </div>

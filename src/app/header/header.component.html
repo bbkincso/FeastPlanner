@@ -1,35 +1,30 @@
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
-                <span class="icon-bar" *ngFor="let iconBar of [1, 2, 3]"></span>
-            </button>
-            <a routerLink="/" class="navbar-brand">Feast Planner</a>
-        </div>
+<div id="header-container">
+    <img src="https://www.spicejungle.com/wp/files/2015/10/how-to-properly-store-spices.jpg">
+    <nav id="my-navbar">
+<!--            <div class="collapse navbar-collapse">-->
+                <ul id="ul-left">
+                    <li class="nav-left-li" (click)="navigate('/')"><h1>Feast Planner</h1></li>
+                    <li class="nav-left-li" (click)="navigate('/recipes')"><p>Recipes</p></li>
+                </ul>
+                <ul id="ul-right">
+                    <li *ngIf="!isAuthenticated" (click)="navigate('/login')"><p>Login</p></li>
+                    <li *ngIf="isAuthenticated" class="dropdown">
+                        <!--                <li class="dropdown">-->
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu pull-right">
+                            <li class="dropdown-li">Signed in as {{userFullName}}</li>
+                            <li role="separator" class="divider dropdown-li"></li>
+                            <li class="dropdown-li" (click)="navigate('/menus')">Your menus</li>
+                            <li role="separator" class="divider dropdown-li"></li>
+                            <li class="dropdown-li" (click)="logOut()">Logout</li>
+                        </ul>
+                    </li>
+                </ul>
+<!--            </div>&lt;!&ndash; /.navbar-collapse &ndash;&gt;-->
+    </nav>
+</div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li routerLinkActive="active"><a routerLink="/recipes">Recipes</a></li>
-            </ul>
 
-            <ul class="nav navbar-nav navbar-right">
-                <li *ngIf="!isAuthenticated" (click)="navigate('/login')">Login</li>
-                <li *ngIf="isAuthenticated" class="dropdown">
-<!--                <li class="dropdown">-->
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li>Signed in as {{userFullName}}</li>
-                        <li role="separator" class="divider"></li>
-                        <li (click)="navigate('/menus')">Your menus</li>
-                        <li role="separator" class="divider"></li>
-                        <li (click)="logOut()">Logout</li>
-                    </ul>
-                </li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+
 
 

@@ -12,11 +12,13 @@
     width: 100%;
     height: 50px;
     position: relative;
+    overflow: hidden;
+    padding: 5px;
 }
 
 #title p {
     position: absolute;
-    bottom: 10%;
+    top: 10%;
     color: white;
 }
 
@@ -28,4 +30,6 @@ img {
 
 #add-to-menu-btn {
     width: 100%;
+    border: none;
+    border-radius: 5px 0px 0px 5px;
 }

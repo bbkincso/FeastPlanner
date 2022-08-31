@@ -17,6 +17,7 @@ export class RecipeDetailComponent implements OnInit, OnDestroy{
   // @Input() recipe = new RecipeDetails({});
     //subscription1$: Subscription;
     //subscription2$: Subscription;
+    showblock: string = 'ingredients';
 
 
   constructor(public recipeService: RecipeService,
@@ -72,4 +73,8 @@ export class RecipeDetailComponent implements OnInit, OnDestroy{
       //this.subscription1$.unsubscribe();
       //this.subscription2$.unsubscribe();
     }
+
+  changeShowBlock(block: string) {
+    this.showblock = block;
+  }
 }

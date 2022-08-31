@@ -1,28 +1,36 @@
-<div class="row">
-    <h3 id="">{{menu.name}}</h3>
-    <p>{{menu.note}}</p>
-</div>
-<div class="row">
-    <div class="col-xs-12 col-md-5" id="recipes">
-        <div *ngFor="let recipe of recipes" (click)="showRecipe(recipe)">
-            <img src="{{recipe.image}}" alt="{{recipe.title}}">
-            <p>{{recipe.title}}</p>
-            <p></p>
-        </div>
-    </div>
-    <div class="col-xs-12 col-md-5" id="displayBlock">
-        <button class="my-button" id="showShoppingList" (click)="showShoppingList()">Shopping list</button>
+<div id="menu-detail-container">
+    <div class="my-row">
+        <div id="recipes">
+            <h1>{{menu.name}}</h1>
+            <p id="note">{{menu.note}}</p>
+            <div *ngFor="let recipe of recipes" (click)="showRecipe(recipe)" id="recipe-div">
+                <div id="image">
+                    <img src="{{recipe.image}}" alt="{{recipe.title}}">
+                </div>
+                <div id="details">
+                    <p id="recipe-title">{{recipe.title}}</p>
+                    <p *ngIf="recipe.glutenFree" class="list-group-item-text allergen">gluten free</p>
+                    <p *ngIf="recipe.dairyFree" class="list-group-item-text allergen">&nbsp;&nbsp;&nbsp;dairy free</p>
+                    <p *ngIf="recipe.vegetarian" class="list-group-item-text allergen">&nbsp;&nbsp;&nbsp;vegetarian</p>
+                    <p *ngIf="recipe.vegan" class="list-group-item-text allergen">&nbsp;&nbsp;&nbsp;vegan</p>
+                    <p>{{recipe.servings}} serving/s</p>
+                </div>
 
-        <div *ngIf="showBlock == 'recipe'" id="recipe">
-            <app-recipe-detail></app-recipe-detail>
-        </div>
-        <div *ngIf="showBlock == 'shoppingList'" id="shoppingList">
-            <div *ngFor="let item of shoppingList">
-                <p>{{item.name}}: {{item.amount}} {{item.unit}}</p>
             </div>
         </div>
-        <div *ngIf="showBlock == 'start'" id="start">
-            <p>Click on recipes for details!</p>
+        <div id="displayBlock">
+            <button class="my-button" id="showShoppingList" (click)="showShoppingList()">Shopping list</button>
+            <div *ngIf="showBlock == 'recipe'" id="recipe">
+                <app-recipe-detail></app-recipe-detail>
+            </div>
+            <div *ngIf="showBlock == 'shoppingList'" id="shoppingList">
+                <div *ngFor="let item of shoppingList">
+                    <p id="shopping-list-item">{{item.name}}: {{item.amount}} {{item.unit}}</p>
+                </div>
+            </div>
+            <div *ngIf="showBlock == 'start'" id="start">
+                <h3>Click on recipes for details!</h3>
+            </div>
         </div>
     </div>
 </div>

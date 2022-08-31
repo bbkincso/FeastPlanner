@@ -1,6 +1,6 @@
-<div class="row">
-    <p>in menu list</p>
-    <div class="col-md-12">
+<div class="row" id="menu-list-container">
+    <h1>Your menus</h1>
+    <div class="col-md-12" id="menu-list">
         <app-menu-list-item
                 *ngFor="let listItem of menuList"
                 [menuListItem]="listItem"></app-menu-list-item>
