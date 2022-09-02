@@ -4,6 +4,7 @@ import {MenuListItem} from "../../models/menu-list-item-model";
 import {RecipeService} from "../../services/recipe.service";
 import {RecipeDetails} from "../../models/recipeDetails.model";
 import {RecipeListItem} from "../../models/recipe-list-item.model";
+import {Ingredient} from "../../models/ingredient.model";
 
 @Component({
   selector: 'app-menu-details',
@@ -37,47 +38,62 @@ export class MenuDetailsComponent implements OnInit {
             console.log(recipe);
 
             recipe.extendedIngredients.forEach((ing) =>{
-               let item = {
-                 name: this.checkPlural(ing.name, 'name'),
-                 amount: ing.measures.metric.amount,
-                 //unit: this.checkUnit(ing.measures.metric.unitLong)
-                 unit: this.checkPlural(ing.measures.metric.unitLong, 'unit')
-               }
-
-               if(ing.aisle.toLowerCase().includes('spices and seasonings')) {
-                 item.name = ing.name;
-                 item.amount = 0;
-                 item.unit = '';
-               } else if (ing.aisle === 'Oil, Vinegar, Salad Dressing' &&
-                   (ing.measures.metric.unitLong === 'Tbsp' || ing.measures.metric.unitLong === 'Tbsps' || ing.measures.metric.unitLong === 'teaspoons'
-                       || ing.measures.metric.unitLong === 'teaspoon' || ing.measures.metric.unitLong === 'servings')) {
-                   item.amount = 0;
-                   item.unit = '';
-               }
-
-              const index = this.shoppingList.findIndex(object =>
-                  (object.name === item.name && object.unit === item.unit)
-                  || (object.name === item.name && item.unit === ''));
-              if (index === -1) {
-
-                this.shoppingList.push(item);
-              }
-              else {
-                this.shoppingList[index].amount += item.amount;
-              }
+                this.addToArray(this.checkAisle(ing.aisle, ing));
             })
       });
     });
+
     console.log(this.shoppingList);
 
 }
 
-  private setUrls() {
+    private addToArray(item: any) {
+        const index = this.shoppingList.findIndex(object =>
+            (object.name === item.name && object.unit === item.unit)
+            || (object.name === item.name && item.unit === ''));
+
+        if (index === -1) {
+            this.shoppingList.push(item);
+        } else {
+            this.shoppingList[index].amount += item.amount;
+        }
+    }
+
+
+    private checkAisle(aisle: String, ingredient: Ingredient) {
+      let item = {
+          name: ingredient.name,
+          amount: 0,
+          unit: ''
+      }
+      if (aisle.toLowerCase().includes('spices and seasonings')) {
+          item.amount = 0;
+          item.unit = '';
+          return item;
+      } else if (aisle.includes('Oil, Vinegar, Salad Dressing')) {
+          if(ingredient.measures.metric.unitLong === 'Tbsp'
+              || ingredient.measures.metric.unitLong === 'Tbsps'
+              || ingredient.measures.metric.unitLong === 'teaspoons'
+              || ingredient.measures.metric.unitLong === 'teaspoon'
+              || ingredient.measures.metric.unitLong === 'servings') {
+
+              item.amount = 0;
+              item.unit = '';
+              return item;
+            }
+        } else {
+            item.amount = ingredient.measures.metric.amount;
+            item.unit = ingredient.measures.metric.unitLong;
+            return item;
+        }
+   }
+
+    private setUrls() {
     this.recipeUrls = this.menu.recipes.split(', ');
   }
 
-  private checkPlural(unit: string, myKey: string): string {
-    if (unit.endsWith('es') && myKey === 'name') {
+  private checkPlural(unit: string): string {
+    if (unit.endsWith('es')) {
       unit = unit.slice(0, - 2);
       return unit;
     } else if (unit.endsWith('s')) {
@@ -93,7 +109,6 @@ export class MenuDetailsComponent implements OnInit {
 
     showRecipe(recipe: RecipeDetails) {
       this.recipeService.currentRecipe = new RecipeDetails(recipe);
-      //this.recipeService.onSelectedRecipe.next(recipe);
         this.showBlock = 'recipe';
     }
 }

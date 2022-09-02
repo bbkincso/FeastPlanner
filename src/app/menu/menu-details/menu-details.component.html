@@ -24,8 +24,9 @@
                 <app-recipe-detail></app-recipe-detail>
             </div>
             <div *ngIf="showBlock == 'shoppingList'" id="shoppingList">
-                <div *ngFor="let item of shoppingList">
-                    <p id="shopping-list-item">{{item.name}}: {{item.amount}} {{item.unit}}</p>
+                <div *ngFor="let item of shoppingList" id="shopping-list-item-div">
+                    <p class="shopping-list-item">{{item.name}}:</p>
+                    <p *ngIf="item.amount > 0 && item.unit != ''" class="shopping-list-item">&nbsp;{{item.amount}}&nbsp;{{item.unit}}</p>
                 </div>
             </div>
             <div *ngIf="showBlock == 'start'" id="start">

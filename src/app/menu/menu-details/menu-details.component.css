@@ -82,15 +82,20 @@ img {
 
 #shoppingList {
     background-color: white;
+    padding: 10px;
+}
+
+#shopping-list-item-div {
+    margin: 5px;
+}
+
+.shopping-list-item {
+    display: inline-block;
+    font-size: 16px;
+    font-family: Arial;
 }
 
 h3 {
     font-size: 20px;
     font-family: Arial;
-}
-
-#shopping-list-item {
-    font-size: 16px;
-    font-family: Arial;
-    padding: 5px 10px;
 }
