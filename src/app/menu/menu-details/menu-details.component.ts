@@ -17,8 +17,12 @@ export class MenuDetailsComponent implements OnInit {
   recipes: RecipeDetails[] = [];
   shoppingList: any[] = [];
   showBlock: string = 'start';
+  totalPrice: number = 0.00;
+  priceNotFound: string = 'Price not found for the following items:';
+  count: number = 0;
+  error: string = '';
 
-  constructor(private menuService: MenuService,
+  constructor(public menuService: MenuService,
               public recipeService: RecipeService) {
   }
 
@@ -39,23 +43,57 @@ export class MenuDetailsComponent implements OnInit {
 
             recipe.extendedIngredients.forEach((ing) =>{
                 this.addToArray(this.checkAisle(ing.aisle, ing));
+
+                this.menuService.getPriceOfItem(ing.name)
+                    .subscribe((response) => {
+                        //console.log(response);
+                        this.checkPrice(response);
+                        //this.totalPrice += response.price;
+                    }, (error => {
+                        // this.error = error.error.error;
+                        this.priceNotFound = this.priceNotFound + ' - ' + ing.name;
+                        this.count += 1;
+                        console.log('404 STATUS');
+                        }
+                        )
+                    )
             })
       });
     });
-
-    console.log(this.shoppingList);
-
 }
 
-    private addToArray(item: any) {
-        const index = this.shoppingList.findIndex(object =>
-            (object.name === item.name && object.unit === item.unit)
-            || (object.name === item.name && item.unit === ''));
+    private checkPrice(response: any) {
+      let newTotal: number = this.totalPrice + response.price;
+      this.totalPrice = Number((this.totalPrice + response.price).toFixed(2));
 
-        if (index === -1) {
-            this.shoppingList.push(item);
-        } else {
-            this.shoppingList[index].amount += item.amount;
+      console.log('200 STATUS');
+    }
+
+    private addToArray(item: any) {
+        const index_1 = this.shoppingList.findIndex(object =>
+            (this.checkPlural(object.name, item.name) && this.checkPlural(object.unit, item.unit))
+            || (this.checkPlural(object.name, item.name) && item.unit === ''));
+
+        // const index_2 = this.shoppingList.findIndex(object =>
+        //     (this.checkPlural(object.name, item.name) && !this.checkPlural(object.unit, item.unit)));
+
+        if (index_1 === -1 ) {
+            if (item.unit === '') {
+                this.shoppingList.push(item);
+            } else {
+                this.shoppingList.unshift(item);
+            }
+        }
+        else {
+            // if(index_2 === -1) {
+            //     this.shoppingList[index_1].amount += item.amount;
+            //     console.log('added up');
+            // } else {
+            //     this.shoppingList.splice(index_2 + 1, 0, item);
+            //     console.log('the same', item.name);
+            // }
+            this.shoppingList[index_1].amount += item.amount;
+            console.log('added up');
         }
     }
 
@@ -92,15 +130,22 @@ export class MenuDetailsComponent implements OnInit {
     this.recipeUrls = this.menu.recipes.split(', ');
   }
 
-  private checkPlural(unit: string): string {
-    if (unit.endsWith('es')) {
-      unit = unit.slice(0, - 2);
-      return unit;
-    } else if (unit.endsWith('s')) {
-      unit = unit.slice(0, - 1);
-      return unit;
-    }
-    return unit;
+  private checkPlural(string_1: string, string_2: string): boolean {
+      let isTrue: boolean = false;
+
+      if (string_1 === string_2) {
+          isTrue = true;
+          return isTrue;
+      }
+      if (string_1.slice(0, -2) === string_2 || string_1 === string_2.slice(0,-2)) {
+          isTrue = true;
+          return isTrue;
+      } else if (string_1.slice(0, -1) === string_2 || string_1 === string_2.slice(0,-1)) {
+          isTrue = true;
+          return isTrue;
+      } else {
+          return isTrue;
+      }
   }
 
     showShoppingList() {

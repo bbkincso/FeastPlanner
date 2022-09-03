@@ -25,8 +25,15 @@
             </div>
             <div *ngIf="showBlock == 'shoppingList'" id="shoppingList">
                 <div *ngFor="let item of shoppingList" id="shopping-list-item-div">
-                    <p class="shopping-list-item">{{item.name}}:</p>
-                    <p *ngIf="item.amount > 0 && item.unit != ''" class="shopping-list-item">&nbsp;{{item.amount}}&nbsp;{{item.unit}}</p>
+                    <div id="item-name"><p>-&nbsp;{{item.name}}</p></div>
+                    <div id="item-amount"><p *ngIf="item.amount > 0 && item.unit != ''">&nbsp;{{item.amount}}&nbsp;{{item.unit}}</p></div>
+                    <div id="item-price">
+<!--                        <p *ngIf="menuService.getPriceOfItem.">&nbsp;{{error}}</p>-->
+                    </div>
+                </div>
+                <div>
+                    <p>Estimated price: {{totalPrice}}€</p>
+                    <p *ngIf="count > 0">{{priceNotFound}}</p>
                 </div>
             </div>
             <div *ngIf="showBlock == 'start'" id="start">
